@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="”ja”">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game</title>
+  </head>
+
+  <body>
+    <div id="app" class="container">
+      <button v-if="startFlg">START</button>
+
+      <h1 class="question">{{ questionList[0][0]}}</h1>
+
+      <div class="textBoxWrapper">
+        <input id="textbox" v-model="typeBox" type="text" />
+      </div>
+      <!-- <p>{{ textForm }}</p> -->
+    </div>
+  </body>
+</html>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<script>
+  Vue.createApp({
+    data() {
+      return {
+        message: "Hello",
+        textForm: "",
+        typeBox: "",
+        questionList: [
+          ["This is a ___gfdsgdfjggfjd  dsfgsdgds", "pen"],
+          ["___ do you like sports" + " dasd faefa gadgasdga", "baseball"],
+          ["9+5", "14"],
+          ["終わり", "1"],
+        ],
+        startFlg: true,
+      };
+    },
+    watch: {
+      typeBox: function () {
+        const a = document.getElementById("textbox");
+        console.log(this.questionList[0][1]);
+        console.log(a.value);
+        if (a.value === this.questionList[0][1]) {
+          alert("good");
+          this.questionList.splice(0, 1);
+          this.typeBox = "";
+        }
+      },
+      methods:{
+        start(){
+          if(startFlg != true){
+            
+          }
+        }
+      }
+    },
+  }).mount("#app");
+</script>
+
+<style>
+  * {
+    font-family: inherit;
+    font-family: inherit;
+    line-height: inherit;
+  }
+
+  body,
+  html {
+    max-width: 360px;
+    font-size: 12px;
+  }
+
+  .container {
+    max-width: 360px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  button {
+    background-color: #333;
+    color: #fff;
+    padding: 4px 60px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .question {
+    text-align: left;
+  }
+
+  #textbox {
+    max-width: 360px;
+    text-align: left;
+    outline: none;
+    border: none;
+    font-size: 32px;
+  }
+
+  .textBoxWrapper {
+    border-bottom: 1px solid grey;
+  }
+</style>
