@@ -8,9 +8,13 @@
   </head>
 
   <body>
-    <h2>Stage4</h2>
-    <h1><span>Verbs</span> 動詞 1701-1786</h1>
+    <div>
+      <h2>Stage4</h2>
+    </div>
     <div id="app" class="container">
+      <p>{{ todaysDate }}</p>
+      <h1><span>Verbs</span> 動詞 1701-1786</h1>
+
       <button v-on:click="gameStart" v-if="startFlg != true">START</button>
 
       <div v-if="startFlg == true" class="mainContainer">
@@ -27,7 +31,7 @@
         </div>
       </div>
       <div class="ans">
-        <div class="answers"></div>
+        <div class="answers"><div class="pass"></div></div>
       </div>
     </div>
   </body>
@@ -39,6 +43,13 @@
   Vue.createApp({
     data() {
       return {
+        todaysDate:
+          new Date().getFullYear() +
+          "年" +
+          (new Date().getMonth() + 1) +
+          "月" +
+          new Date().getDate() +
+          "日",
         textForm: "",
         typeBox: "",
         questionList: [
@@ -160,18 +171,34 @@
     },
     mounted: function () {
       this.question_length = this.questionList.length;
-      console.log(this.question_length);
     },
     watch: {
+      todaysDate: function () {
+        new Date().getFullYear() +
+          "年" +
+          (new Date().getMonth() + 1) +
+          "月" +
+          new Date().getDate() +
+          "日" +
+          new Date().getHours() +
+          "時" +
+          new Date().getMinutes() +
+          "分" +
+          new Date().getSeconds() +
+          "秒";
+      },
       typeBox: function () {
         const a = document.getElementById("textbox");
         const div = document.querySelector(".answers");
+        const insert = document.querySelector(".pass");
 
         if (a.value === this.questionList[0][1]) {
           console.log("if");
           let addDiv = document.createElement("div");
           addDiv.textContent = this.questionList[0][1];
           div.appendChild(addDiv);
+          // addDiv.classList.add("pass");
+          // div.insertBefore(addDiv, insert);
           this.questionList.splice(0, 1);
           this.typeBox = "";
           this.current_counts++;
@@ -181,6 +208,7 @@
           addDiv.textContent = this.questionList[0][1];
           addDiv.classList.add("pass");
           div.appendChild(addDiv);
+          // div.insertBefore(addDiv, insert);
 
           this.questionList.splice(0, 1);
           this.current_counts++;
