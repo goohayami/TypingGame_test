@@ -8,7 +8,8 @@
   </head>
 
   <body>
-    <h1><span>Verbs</span> 動詞 1701-1754</h1>
+    <h2>Stage4</h2>
+    <h1><span>Verbs</span> 動詞 1701-1786</h1>
     <div id="app" class="container">
       <button v-on:click="gameStart" v-if="startFlg != true">START</button>
 
@@ -21,7 +22,9 @@
         <div class="guageWrapper mb-20">
           <div class="guage" v-bind:style="styleObject"></div>
         </div>
-        <div>{{ current_counts }}/{{ this.question_length-1 }}</div>
+        <div class="question-counts">
+          {{ current_counts }}/{{ this.question_length-1 }}
+        </div>
       </div>
       <div class="ans">
         <div class="answers"></div>
@@ -93,10 +96,39 @@
           ["削除する", "delete"],
           ["阻害する", "inhibit"],
           ["そらす。____ attention from", "divert"],
-          ["CLEAR!", "proclaim"],
-          ["CLEAR!", "proclaim"],
-          ["CLEAR!", "proclaim"],
-          ["CLEAR!", "proclaim"],
+          ["飼いならす", "tame"],
+          ["手に入れる", "reap"],
+          ["断言する", "affirm"],
+          ["浸る。be _____ in", "immersed"],
+          ["期限が切れる", "expire"],
+          ["乗り出す。 ____ on", "embark"],
+          ["誓う。 ___ to fight.", "vow"],
+          ["予知する", "foresee"],
+          ["崇拝する", "adore"],
+          ["切望する。___ for", "yearn"],
+          ["弱める", "undermine"],
+          ["吸う", "suck"],
+          ["誓う。____ to support them.", "pledge"],
+          ["立ち入る。____ on", "intrude"],
+          ["訴える", "sue"],
+          ["歪曲する", "distort"],
+          ["消す", "extinguish"],
+          ["説教する", "preach"],
+          ["抑制する", "curb"],
+          ["耐える", "withstand"],
+          ["ひたす", "dip"],
+          ["暗唱する", "recite"],
+          ["押し込む", "thrust"],
+          ["嘆願する。____ with", "plead"],
+          ["恥をかかせる", "humiliate"],
+          ["放出する", "discharge"],
+          ["非難する", "condemn"],
+          ["検索する", "retrieve"],
+          ["すくめる", "shrug"],
+          ["呼び起こす", "evoke"],
+          ["取ってくる", "fetch"],
+          ["おせじを言う", "flatter"],
+          ["CLEAR!", "******"],
         ],
         startFlg: "",
         current_counts: 0,
@@ -294,6 +326,11 @@
 
     .pass {
       color: red;
+    }
+    .question-counts {
+      font-size: 24px;
+      color: rgb(41, 123, 155);
+      font-weight: bold;
     }
   }
 </style>
