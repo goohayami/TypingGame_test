@@ -8,15 +8,24 @@
   </head>
 
   <body>
+    <h1><span>Verbs</span> 動詞 1701-1718</h1>
     <div id="app" class="container">
-      <button v-if="startFlg">START</button>
+      <button v-on:click="gameStart" v-if="startFlg != true">START</button>
 
-      <h1 class="question">{{ questionList[0][0]}}</h1>
+      <div v-if="startFlg == true" class="mainContainer">
+        <h1 class="question mb-20">{{ questionList[0][0]}}</h1>
+        <div class="textBoxWrapper mb-20">
+          <input class="mb-20" id="textbox" v-model="typeBox" type="text" />
+        </div>
 
-      <div class="textBoxWrapper">
-        <input id="textbox" v-model="typeBox" type="text" />
+        <div class="guageWrapper mb-20">
+          <div class="guage" v-bind:style="styleObject"></div>
+        </div>
+        <div>{{ current_counts }}/{{ this.question_length-1 }}</div>
       </div>
-      <!-- <p>{{ textForm }}</p> -->
+      <div class="ans">
+        <div class="answers"></div>
+      </div>
     </div>
   </body>
 </html>
@@ -27,36 +36,80 @@
   Vue.createApp({
     data() {
       return {
-        message: "Hello",
         textForm: "",
         typeBox: "",
         questionList: [
-          ["This is a ___gfdsgdfjggfjd  dsfgsdgds", "pen"],
-          ["___ do you like sports" + " dasd faefa gadgasdga", "baseball"],
-          ["9+5", "14"],
-          ["終わり", "1"],
+          ["あきらかにする", "clarify"],
+          ["粉々に砕く", "smash"],
+          ["悲しむ", "mourn"],
+          ["粉々にする", "shatter"],
+          ["呼ぶ", "summon"],
+          ["残る", "linger"],
+          ["嘆く", "lament"],
+          ["喜ぶ", "rejoice"],
+          ["配分する", "allocate"],
+          ["ピシャリと打つ", "slap"],
+          ["主張する。 ____that", "contend"],
+          ["誓う", "swear"],
+          ["識別する", "discern"],
+          ["悪化させる", "degrade"],
+          ["築く", "erect"],
+          ["証言する", "testify"],
+          ["駆り立てる", "spur"],
+          ["才能に恵まれる。be ____ with", "endowed"],
+          ["CLEAR!", "summon"],
         ],
-        startFlg: true,
+        startFlg: "",
+        current_counts: 0,
+        question_counts: 0,
       };
+    },
+    computed: {
+      styleObject: function () {
+        width = (100 / (this.question_length - 1)) * this.current_counts + "%";
+        if (this.current_counts == this.question_length - 1) {
+          color = "#03a9f4";
+        } else {
+          color = "tomato";
+        }
+        return {
+          width: width,
+          "background-color": color,
+        };
+      },
+    },
+    methods: {
+      gameStart() {
+        this.startFlg = true;
+        this.$nextTick(function () {
+          document.getElementById("textbox").focus();
+        });
+      },
+    },
+    mounted: function () {
+      this.question_length = this.questionList.length;
+      console.log(this.question_length);
     },
     watch: {
       typeBox: function () {
         const a = document.getElementById("textbox");
-        console.log(this.questionList[0][1]);
-        console.log(a.value);
+        const div = document.querySelector(".answers");
+
+        // console.log(this.questionList[0][1]);
+        // console.log(a.value);
         if (a.value === this.questionList[0][1]) {
-          alert("good");
+          alert(this.questionList[0][1]);
+          let addDiv = document.createElement("div");
+          addDiv.textContent = this.questionList[0][1];
+          div.appendChild(addDiv);
           this.questionList.splice(0, 1);
+          this.typeBox = "";
+          this.current_counts++;
+        } else if (a.value.length > 10 && a.valu != this.questionList[0][1]) {
+          console.log("try again");
           this.typeBox = "";
         }
       },
-      methods:{
-        start(){
-          if(startFlg != true){
-            
-          }
-        }
-      }
     },
   }).mount("#app");
 </script>
@@ -66,6 +119,9 @@
     font-family: inherit;
     font-family: inherit;
     line-height: inherit;
+  }
+  span {
+    color: rgb(41, 123, 155);
   }
 
   body,
@@ -81,6 +137,8 @@
   }
 
   button {
+    height: 50px;
+    font-size: 32px;
     background-color: #333;
     color: #fff;
     padding: 4px 60px;
@@ -102,5 +160,21 @@
 
   .textBoxWrapper {
     border-bottom: 1px solid grey;
+  }
+
+  .guage {
+    height: 12px;
+    transition: all 0.5s ease;
+  }
+  .guageWrapper {
+    border: 1px solid;
+    height: 12px;
+  }
+
+  .mb-20 {
+    margin-bottom: 20px;
+  }
+  .answers {
+    font-size: 16px;
   }
 </style>
