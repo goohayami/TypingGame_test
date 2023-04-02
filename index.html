@@ -196,4 +196,69 @@
   .answers {
     font-size: 16px;
   }
+/* ここからタブレット */
+  @media screen and (max-width: 928px) {
+    * {
+      font-family: inherit;
+      font-family: inherit;
+      line-height: inherit;
+    }
+    span {
+      color: rgb(41, 123, 155);
+    }
+
+    body,
+    html {
+      max-width: 720px;
+      font-size: 24px;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    button {
+      height: 50px;
+      font-size: 32px;
+      background-color: #333;
+      color: #fff;
+      padding: 4px 60px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .question {
+      text-align: left;
+    }
+
+    #textbox {
+      max-width: 720px;
+      text-align: left;
+      outline: none;
+      border: none;
+      font-size: 64px;
+    }
+
+    .textBoxWrapper {
+      border-bottom: 1px solid grey;
+    }
+
+    .guage {
+      height: 24px;
+      transition: all 0.5s ease;
+    }
+    .guageWrapper {
+      border: 1px solid;
+      height: 24px;
+    }
+
+    .mb-20 {
+      margin-bottom: 20px;
+    }
+    .answers {
+      font-size: 16px;
+    }
+  }
 </style>
