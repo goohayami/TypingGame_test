@@ -81,6 +81,7 @@
         startFlg: "",
         current_counts: 0,
         question_counts: 0,
+        pass: "pass",
       };
     },
     computed: {
@@ -114,19 +115,27 @@
         const a = document.getElementById("textbox");
         const div = document.querySelector(".answers");
 
-        // console.log(this.questionList[0][1]);
-        // console.log(a.value);
         if (a.value === this.questionList[0][1]) {
-          // alert(this.questionList[0][1]);
+          console.log("if");
           let addDiv = document.createElement("div");
           addDiv.textContent = this.questionList[0][1];
           div.appendChild(addDiv);
           this.questionList.splice(0, 1);
           this.typeBox = "";
           this.current_counts++;
+        } else if (a.value === "pass") {
+          console.log("if2");
+          let addDiv = document.createElement("div");
+          addDiv.textContent = this.questionList[0][1];
+          addDiv.classList.add("pass");
+          div.appendChild(addDiv);
+
+          this.questionList.splice(0, 1);
+          this.current_counts++;
         } else if (a.value.length > 10 && a.valu != this.questionList[0][1]) {
-          console.log("try again");
           this.typeBox = "";
+          console.log("if1");
+        } else {
         }
       },
     },
@@ -258,7 +267,11 @@
       margin-bottom: 20px;
     }
     .answers {
-      font-size: 16px;
+      font-size: 32px;
+    }
+
+    .pass {
+      color: red;
     }
   }
 </style>
