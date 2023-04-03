@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="ans">
-        <div class="answers"><div class="pass"></div></div>
+        <div class="answers"><div class="done"></div></div>
       </div>
     </div>
   </body>
@@ -193,22 +193,22 @@
         const insert = document.querySelector(".pass");
 
         if (a.value === this.questionList[0][1]) {
-          console.log("if");
           let addDiv = document.createElement("div");
           addDiv.textContent = this.questionList[0][1];
           div.appendChild(addDiv);
-          // addDiv.classList.add("pass");
-          // div.insertBefore(addDiv, insert);
+          addDiv.classList.add("done");
+          const insert = document.querySelector(".done");
+          div.insertBefore(addDiv, insert);
           this.questionList.splice(0, 1);
           this.typeBox = "";
           this.current_counts++;
         } else if (a.value === "pass") {
-          console.log("if2");
           let addDiv = document.createElement("div");
           addDiv.textContent = this.questionList[0][1];
           addDiv.classList.add("pass");
-          div.appendChild(addDiv);
-          // div.insertBefore(addDiv, insert);
+          addDiv.classList.add("done");
+          const insert = document.querySelector(".done");
+          div.insertBefore(addDiv, insert);
 
           this.questionList.splice(0, 1);
           this.current_counts++;
