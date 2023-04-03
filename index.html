@@ -152,7 +152,7 @@
         width = (100 / (this.question_length - 1)) * this.current_counts + "%";
         if (this.current_counts == this.question_length - 1) {
           color = "#03a9f4";
-        } else if (this.current_counts < 44) {
+        } else if (this.current_counts < this.question_length / 2) {
           color = "tomato";
         } else {
           color = "#c472c4";
