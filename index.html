@@ -152,8 +152,10 @@
         width = (100 / (this.question_length - 1)) * this.current_counts + "%";
         if (this.current_counts == this.question_length - 1) {
           color = "#03a9f4";
-        } else {
+        } else if (this.current_counts < 44) {
           color = "tomato";
+        } else {
+          color = "#c472c4";
         }
         return {
           width: width,
@@ -190,7 +192,6 @@
       typeBox: function () {
         const a = document.getElementById("textbox");
         const div = document.querySelector(".answers");
-        const insert = document.querySelector(".pass");
 
         if (a.value === this.questionList[0][1]) {
           let addDiv = document.createElement("div");
@@ -209,7 +210,6 @@
           addDiv.classList.add("done");
           const insert = document.querySelector(".done");
           div.insertBefore(addDiv, insert);
-
           this.questionList.splice(0, 1);
           this.current_counts++;
         } else if (a.value.length > 10 && a.valu != this.questionList[0][1]) {
